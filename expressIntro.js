@@ -1,52 +1,13 @@
 const express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const categories = require('./data/categories');
 const app = express();
 
 // parse application/json
 app.use(bodyParser.json())
 
-let categories = [
-    {
-        "id": 2,
-        "description": "Sweet and savory sauces relishes spreads and seasonings",
-        "name": "Condiments"
-    },
-    {
-        "id": 1,
-        "description": "Soft drinks coffees teas beers and ales",
-        "name": "Beverages"
-    },
-    {
-        "id": 3,
-        "description": "Desserts candies and sweet breads",
-        "name": "Confections"
-    },
-    {
-        "id": 4,
-        "description": "Cheeses",
-        "name": "Dairy Products"
-    },
-    {
-        "id": 5,
-        "description": "Breads crackers pasta and cereal",
-        "name": "Grains/Cereals"
-    },
-    {
-        "id": 6,
-        "description": "Prepared meats",
-        "name": "Meat/Poultry"
-    },
-    {
-        "id": 7,
-        "description": "Dried fruit and bean curd",
-        "name": "Produce"
-    },
-    {
-        "id": 8,
-        "description": "Seaweed and fish",
-        "name": "Seafood"
-    }
-]
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
 
 //home endpoint
@@ -88,7 +49,7 @@ app.delete('/api/categories/:id', function (req, res) {
 
 //POST - CREATE
 app.post('/api/categories', function (req, res) {
-
+    
     let name = req.body.name;
     let description = req.body.description;
 
