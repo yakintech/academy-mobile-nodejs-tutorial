@@ -1,7 +1,13 @@
 const express = require('express');
 var bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+
+
 const categories = require('./data/categories');
+
 const app = express();
+
+app.use(fileUpload());
 
 // parse application/json
 app.use(bodyParser.json())
@@ -50,6 +56,7 @@ app.delete('/api/categories/:id', function (req, res) {
 //POST - CREATE
 app.post('/api/categories', function (req, res) {
     
+    console.log('BODY', req.files);
     let name = req.body.name;
     let description = req.body.description;
 
